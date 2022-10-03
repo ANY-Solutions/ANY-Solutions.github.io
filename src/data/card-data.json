@@ -1,0 +1,35 @@
+[
+    {
+       "icon":"Webdesign.svg" ,
+       "title":"Webdesign",
+       "phrase":"Some Catchy phrase in bold.",
+       "key-points":[
+           "some key points!",
+           "some key points!",
+           "some key points!"
+        ],
+        "color":"--color-primary"
+    },
+    {
+       "icon":"Web_Development.svg" ,
+       "title":"Web Development",
+       "phrase":"Some Catchy phrase in bold.",
+       "key-points":[
+           "some key points!",
+           "some key points!",
+           "some key points!"
+       ],
+        "color":"--color-secondary"
+    },
+    {
+       "icon":"IT_Infrastructure.svg" ,
+       "title":"IT Infrastructure",
+       "phrase":"Some Catchy phrase in bold.",
+       "key-points":[
+           "some key points!",
+           "some key points!",
+           "some key points!"
+       ],
+        "color":"--color-tertiary"
+    }
+]

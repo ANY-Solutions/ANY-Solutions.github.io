@@ -1,0 +1,129 @@
+<header class="header container flex">
+  <div class="logo">
+    <img src="/Logo.svg" alt="" srcset="" />
+  </div>
+  <nav class="nav flex">
+    <div class="ham-menu">
+      <input type="checkbox" name="cb" id="cb" class="check" />
+      <span class="line line1"></span>
+      <span class="line line2"></span>
+      <span class="line line3"></span>
+    </div>
+    <ul class="flex">
+      <label for="cb"></label>
+      <li>Home</li>
+      <li>About Us</li>
+      <li>Contact Us</li>
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .header {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    width: 100%;
+    height: 10%;
+    justify-content: space-between;
+  }
+  nav {
+    width: 35%;
+  }
+  nav ul.flex {
+    width: 100%;
+    justify-content: space-between;
+  }
+  nav ul li {
+    font-size: 1.2rem;
+    transition: all 200ms ease-in-out;
+  }
+  nav ul li:hover {
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 200ms ease-in-out;
+  }
+  .logo img {
+    width: 14rem;
+  }
+  .ham-menu {
+    position: relative;
+    display: none;
+
+    height: 1.2rem;
+  }
+  .check {
+    position: absolute;
+    width: 2.5rem;
+    height: 1.2rem;
+    z-index: 3;
+    opacity: 0;
+  }
+
+  .check:hover {
+    cursor: pointer;
+  }
+  .line {
+    display: block;
+    border-radius: 2rem;
+    width: 2rem;
+    height: 0.2rem;
+    background-color: white;
+  }
+  .line2 {
+    width: 2.5rem;
+  }
+  .line3 {
+    width: 1.5rem;
+  }
+
+  .check:checked ~ .line2 {
+    opacity: 0;
+  }
+  .check:checked ~ .line1 {
+    transition: all 800ms ease-in-out;
+    transform: translateY(0.5rem) rotate(45deg);
+  }
+  .check:checked ~ .line3 {
+    width: 2rem;
+    transition: all 800ms ease-in-out;
+    transform: translateY(-0.5rem) rotate(-45deg);
+  }
+  @media screen and (max-width: 800px) {
+    nav.flex {
+      justify-content: flex-end;
+    }
+    .check:checked ~ .line {
+      background-color: red;
+    }
+    ul.flex {
+      display: none;
+    }
+    div.ham-menu {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    
+  }
+</style>
+<!-- 
+.check:checked ~ ul.flex {
+  margin-top: 4rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+} 
+.check:checked nav.flex {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  background-color: var(--color-dark);
+  position: absolute;
+  width: 50vw;
+  height: 100vh;
+  right: 0;
+  top: 0;
+  padding: 50px 50px;
+}  -->

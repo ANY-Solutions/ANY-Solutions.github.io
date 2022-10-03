@@ -1,0 +1,51 @@
+---
+import Card from "./Card.astro";
+import data from "../data/card-data.json";
+---
+
+<section class="services">
+  <div class="container flex S-contant">
+    {
+      data.map((element) => (
+        <Card
+          icon={element.icon}
+          title={element.title}
+          phrase={element.phrase}
+          keyPoints={element["key-points"]}
+          color={element.color}
+        />
+      ))
+    }
+    <img src="/services-bg-right.svg" alt="bg" srcset="" />
+  </div>
+</section>
+
+<style>
+  .services {
+    padding: 12rem 0;
+    overflow: hidden;
+  }
+  .S-contant {
+    flex-direction: column;
+    background-repeat: no-repeat;
+    background-image: url("/services-bg-left.svg");
+    background-position: 5% top;
+    background-size: auto 70%;
+    position: relative;
+  }
+  .S-contant img {
+    position: absolute;
+    height: 80%;
+    z-index: -1;
+    right: -10%;
+    bottom: -10%;
+  }
+  @media screen and (max-width: 1000px) {
+    .S-contant {
+      background-size: auto 60%;
+    }
+    .S-contant img {
+      display: none;
+    }
+  }
+</style>
