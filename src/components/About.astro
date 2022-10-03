@@ -1,0 +1,86 @@
+---
+---
+
+<section class="about">
+  <div class="container flex A-contant">
+    <img class="a-bg-right" src="/about-bg-right.svg" alt="bg" srcset="" />
+    <div class="text">
+      <h1>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam,
+        corporis.
+      </h1>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit nisi
+        illum eius dolor at. Ratione animi, eligendi voluptatem sequi eos itaque
+        esse ullam? Harum sit commodi quasi alias velit minus! Lorem ipsum,
+        dolor sit amet consectetur adipisicing elit. Ex sint quod recusandae
+        eaque consequatur temporibus enim vel delectus, minus nihil itaque quas
+        beatae id. In esse ipsa impedit. Ducimus, nam.
+      </p>
+    </div>
+    <img class="a-bg-left" src="/about-bg-left.svg" alt="bg" srcset="" />
+  </div>
+</section>
+
+<style>
+  .about {
+    padding: 10rem 0;
+  }
+  .A-contant {
+    flex-direction: column;
+    position: relative;
+  }
+  .a-bg-left {
+    position: absolute;
+    height: 150%;
+    z-index: -1;
+    left: -8%;
+    bottom: -40%;
+  }
+  .a-bg-right {
+    position: absolute;
+    height: 150%;
+    z-index: -1;
+    right: 0;
+    top: -50%;
+  }
+  .text {
+    transition: all 800ms ease-in-out;
+    width: 70%;
+  }
+  .text h1 {
+    font-size: 5rem;
+    line-height: 5rem;
+    margin-bottom: 5rem;
+  }
+  .text p {
+    padding-left: 5%;
+    font-size: 2rem;
+  }
+  @media screen and (max-width: 1000px) {
+      .a-bg-left {
+      display: none;
+    }
+    .a-bg-right {
+        height: 100%;
+        top: 0%;
+    }
+    .text {
+        width: 100%;
+        padding: 2rem;
+        background-color: rgba(7, 8, 36, 0.83);
+    }
+}
+@media screen and (max-width: 600px) {
+    .text h1 {
+      font-size: 3rem;
+      line-height: 3rem;
+      margin-bottom: 3rem;
+    }
+    .text p {
+      padding-left: 5%;
+      font-size: 1.5rem;
+    }
+    
+}
+</style>

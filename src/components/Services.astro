@@ -5,6 +5,7 @@ import data from "../data/card-data.json";
 
 <section class="services">
   <div class="container flex S-contant">
+    <img class="s-bg-left" src="/services-bg-left.svg" alt="bg" srcset="" />
     {
       data.map((element) => (
         <Card
@@ -16,35 +17,35 @@ import data from "../data/card-data.json";
         />
       ))
     }
-    <img src="/services-bg-right.svg" alt="bg" srcset="" />
+    <img class="s-bg-right" src="/services-bg-right.svg" alt="bg" srcset="" />
   </div>
 </section>
 
 <style>
   .services {
     padding: 12rem 0;
-    overflow: hidden;
+    overflow-x: hidden;
   }
   .S-contant {
     flex-direction: column;
-    background-repeat: no-repeat;
-    background-image: url("/services-bg-left.svg");
-    background-position: 5% top;
-    background-size: auto 70%;
     position: relative;
   }
-  .S-contant img {
+  .s-bg-right {
     position: absolute;
     height: 80%;
     z-index: -1;
     right: -10%;
     bottom: -10%;
   }
+  .s-bg-left {
+    position: absolute;
+    height: 80%;
+    z-index: -1;
+    left: 0;
+    top: -10%;
+  }
   @media screen and (max-width: 1000px) {
-    .S-contant {
-      background-size: auto 60%;
-    }
-    .S-contant img {
+    .s-bg-right {
       display: none;
     }
   }
