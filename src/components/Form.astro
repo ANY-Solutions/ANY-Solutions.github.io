@@ -21,6 +21,7 @@
 
 <style>
   .form {
+    transition: all 800ms ease-in-out;
     flex-direction: column;
     background-color: rgba(7, 8, 36, 0.83);
     width: 80%;
@@ -46,6 +47,9 @@
     transform: translate(-50%, -50%);
     top: 0;
     left: 50%;
+  }
+  .form:hover {
+    transform: scale(1.02);
   }
   .form label {
     font-weight: bold;
