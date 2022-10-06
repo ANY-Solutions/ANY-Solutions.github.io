@@ -1,0 +1,50 @@
+---
+import Form from "./Form.astro";
+---
+
+<section class="contact">
+  <div class="container flex c-contant">
+    <img class="c-bg-left" src="/contact-bg-left.svg" alt="bg" srcset="" />
+    <Form/>
+  </div>
+  <img class="c-bg-right" src="/contact-bg-right.png" alt="bg" srcset="" />
+</section>
+
+<style>
+  .contact {
+    padding: 12rem 0;
+    position: relative;
+  }
+  .c-contant {
+    flex-direction: column;
+    position: relative;
+    align-items: flex-end;
+  }
+  .c-bg-right {
+    position: absolute;
+    height: 150%;
+    z-index: -1;
+    right: 0%;
+    bottom: -20%;
+  }
+  .c-bg-left {
+    position: absolute;
+    height: 150%;
+    z-index: -1;
+    left: 0;
+    top: -20%;
+  }
+  @media screen and (max-width: 1000px) {
+    .c-bg-right {
+      display: none;
+    }
+    .c-contant{
+      align-items: center;
+    }
+  }
+  @media screen and (min-width: 3840px) {
+    .c-bg-right {
+      display: none;
+    }
+  }
+  </style>
