@@ -2,18 +2,18 @@
   <div class="logo">
     <img src="/Logo.svg" alt="" srcset="" />
   </div>
-  <nav class="nav flex">
+  <nav id="nav" class="nav flex">
     <div class="ham-menu">
       <input type="checkbox" name="cb" id="cb" class="check" />
       <span class="line line1"></span>
       <span class="line line2"></span>
       <span class="line line3"></span>
     </div>
-    <ul class="flex">
+    <ul id="links" class="flex">
       <label for="cb"></label>
-      <li>Home</li>
-      <li>About Us</li>
-      <li>Contact Us</li>
+      <li><a href="#services"> Services</a></li>
+      <li><a href="#about"> About Us</a></li>
+      <li><a href="#contact"> Contact Us</a></li>
     </ul>
   </nav>
 </header>
@@ -26,10 +26,11 @@
     height: 10%;
     justify-content: space-between;
   }
-  nav {
+  .nav {
     width: 35%;
+    justify-content: flex-end;
   }
-  nav ul.flex {
+  .nav ul {
     width: 100%;
     justify-content: space-between;
   }
@@ -88,15 +89,34 @@
     transition: all 800ms ease-in-out;
     transform: translateY(-0.5rem) rotate(-45deg);
   }
-  @media screen and (max-width: 800px) {
-    nav.flex {
-      justify-content: flex-end;
-    }
-    .check:checked ~ .line {
-      background-color: red;
-    }
+  .m-links {
+    transition: opacity 700ms ease-in-out;
+    opacity: 1 !important;
+    width: 100% !important;
+    margin-top: 4rem;
+    flex-direction: column;
+  }
+  .m-links li {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .m-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+    background-color: var(--color-dark);
+    position: absolute;
+    width: 50vw;
+    height: 100vh;
+    right: 0;
+    top: 0;
+    padding: 50px 50px;
+  }
+  @media screen and (max-width: 900px) {
     ul.flex {
-      display: none;
+      opacity: 0;
+      width: 0%;
     }
     div.ham-menu {
       display: flex;
@@ -104,26 +124,20 @@
       justify-content: space-between;
       align-items: flex-end;
     }
-    
   }
 </style>
-<!-- 
-.check:checked ~ ul.flex {
-  margin-top: 4rem;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-} 
-.check:checked nav.flex {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: flex-start;
-  background-color: var(--color-dark);
-  position: absolute;
-  width: 50vw;
-  height: 100vh;
-  right: 0;
-  top: 0;
-  padding: 50px 50px;
-}  -->
+
+<script is:inline>
+  const cb = document.getElementById("cb");
+  const nav = document.getElementById("nav");
+  const links = document.getElementById("links");
+  cb.addEventListener("click", () => {
+    if (cb.checked) {
+      nav.classList.add("m-nav");
+      links.classList.add("m-links");
+    } else {
+      nav.classList.remove("m-nav");
+      links.classList.remove("m-links");
+    }
+  });
+</script>

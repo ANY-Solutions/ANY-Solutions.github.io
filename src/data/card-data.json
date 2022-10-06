@@ -8,7 +8,7 @@
            "some key points!",
            "some key points!"
         ],
-        "color":"--color-primary"
+        "color":"#32baec"
     },
     {
        "icon":"Web_Development.svg" ,
@@ -19,7 +19,7 @@
            "some key points!",
            "some key points!"
        ],
-        "color":"--color-secondary"
+        "color":"#c132ec"
     },
     {
        "icon":"IT_Infrastructure.svg" ,
@@ -30,6 +30,6 @@
            "some key points!",
            "some key points!"
        ],
-        "color":"--color-tertiary"
+        "color":"#fd4d26"
     }
 ]
