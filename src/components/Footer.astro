@@ -1,0 +1,66 @@
+<footer class="flex">
+  <div class="flex container footer-container">
+    <div class="flex left-footer">
+      <nav class="nav flex footer-nav">
+        <ul id="links" class="flex">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </nav>
+      <div class="social-media flex">
+        <a href="#"><img src="/facebook-icon.svg" alt="" srcset="" /></a>
+        <a href="#"><img src="/twitter-icon.svg" alt="" srcset="" /></a>
+        <a href="#"><img src="/github-icon.svg" alt="" srcset="" /></a>
+      </div>
+    </div>
+    <div class="logo">
+      <img src="/Logo.svg" alt="" srcset="" />
+    </div>
+  </div>
+</footer>
+
+<style>
+  footer {
+    margin-top: 25rem;
+  }
+  .footer-container {
+    padding-top: 30px;
+    padding-bottom: 60px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .left-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .footer-nav {
+    margin-bottom: 2rem;
+    width: 22rem;
+    justify-content: space-between;
+  }
+  .social-media {
+    margin: 2rem 0;
+    width: 12rem;
+    justify-content: space-between;
+  }
+  .social-media img {
+    transition: all 800ms ease-in-out;
+  }
+  .social-media img:hover {
+    transform: scale(0.9);
+  }
+
+  @media screen and (max-width: 900px) {
+    .footer-container {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .left-footer {
+      align-items: center;
+      width: max-content;
+    }
+  }
+</style>

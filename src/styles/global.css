@@ -69,3 +69,27 @@ ul {
 .ml {
   margin-left: 10%;
 }
+
+
+/*nav styling for the header and footer*/
+
+  .nav {
+    width: 35%;
+    justify-content: flex-end;
+  }
+  .nav ul {
+    width: 100%;
+    justify-content: space-between;
+  }
+  nav ul li {
+    font-size: 1.2rem;
+    transition: all 200ms ease-in-out;
+  }
+  nav ul li:hover {
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 200ms ease-in-out;
+  }
+  .logo img {
+    width: 14rem;
+  }
