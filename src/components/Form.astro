@@ -1,4 +1,9 @@
-<form class="flex form" action="">
+---
+import Message from "./Message.astro";
+---
+
+<form class="flex form">
+  <Message />
   <h3>Contact Form</h3>
   <div class="flex contact-info">
     <div class="flex">
@@ -10,16 +15,33 @@
       <h4>Email@emial.com</h4>
     </div>
   </div>
-  <label for="name">Name:</label>
-  <input type="text" id="name" name="name" />
-  <label for="email">Email:</label>
-  <input type="email" id="email" name="email" />
-  <label for="description">Description:</label>
-  <textarea name="description" id="description" rows="10"></textarea>
-  <button class="btn form-btn" type="submit">Submit</button>
+  <p>the fields with <span>*</span> has to be filled.</p>
+  <label for="name">Name<span>*</span>:</label>
+  <input class="field" required type="text" id="name" name="name" />
+  <label for="email">Email<span>*</span>:</label>
+  <input class="field" required type="email" id="email" name="email" />
+  <label for="phoneNum">Phone Number:</label>
+  <input class="field" type="text" id="phoneNum" name="phoneNum" />
+  <label for="description">Description<span>*</span>:</label>
+  <textarea class="field" required name="description" id="description" rows="10"
+  ></textarea>
+  <button
+    id="form-btn"
+    class="btn form-btn"
+    type="submit"
+    onclick="send(event)"
+  >
+    Submit
+  </button>
 </form>
 
 <style>
+  span {
+    color: var(--color-tertiary);
+  }
+  .form p {
+  }
+
   .form {
     transition: all 800ms ease-in-out;
     flex-direction: column;
@@ -58,7 +80,7 @@
     text-align: left;
   }
   .form input {
-    padding: 2px 15;
+    padding: 2px 15px;
     width: 100%;
     height: 2.5rem;
     margin-top: 1rem;
@@ -112,3 +134,65 @@
     }
   }
 </style>
+
+<script is:inline>
+  var btn = document.getElementById("form-btn");
+  const message = (status) => {
+    var card = document.getElementById("message");
+    var message = status
+      ? document.createTextNode("Your message have been sent successfully")
+      : document.createTextNode("Your message couldn’t be sent out!");
+    var text = status
+      ? document.createTextNode("thanks for contacting us")
+      : document.createTextNode("Please try agin later");
+    card.children[0].appendChild(message);
+    status
+      ? card.children[0].classList.add("good") &&
+        card.children[0].classList.remove("bad")
+      : card.children[0].classList.add("bad") &&
+        card.children[0].classList.remove("good");
+    card.children[1].appendChild(text);
+    card.children[2].setAttribute(
+      "src",
+      status ? "/success.svg" : "/failure.svg"
+    );
+    card.classList.add("visible");
+    card.classList.remove("hidden");
+    setTimeout(() => {
+      card.classList.remove("visible");
+      card.classList.add("hidden");
+    }, 2000);
+    setTimeout(() => {
+      card.children[1].innerHTML = "";
+      card.children[0].innerHTML = "";
+    }, 4000);
+  };
+  const send = async (event) => {
+    event.preventDefault();
+    btn.setAttribute("disabled", "");
+    var rawData = document.getElementsByClassName("field");
+    var data = {
+      name: rawData[0].value,
+      email: rawData[1].value,
+      phoneNum: rawData[2].value || 0,
+      description: rawData[3].value,
+    };
+
+    fetch("http://localhost:3001/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(data),
+    }).then((res) => {
+      if (res.status == 200) {
+        message(true);
+        btn.removeAttribute("disabled");
+      } else {
+        message(false);
+        btn.removeAttribute("disabled");
+      }
+    });
+  };
+</script>
