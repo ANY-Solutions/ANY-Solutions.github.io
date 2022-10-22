@@ -5,7 +5,7 @@ import Form from "./Form.astro";
 <section id="contact" class="contact">
   <div class="container flex c-contant">
     <img class="c-bg-left" src="/contact-bg-left.svg" alt="bg" srcset="" />
-    <Form/>
+    <Form />
   </div>
   <img class="c-bg-right" src="/contact-bg-right.png" alt="bg" srcset="" />
 </section>
@@ -38,7 +38,7 @@ import Form from "./Form.astro";
     .c-bg-right {
       display: none;
     }
-    .c-contant{
+    .c-contant {
       align-items: center;
     }
   }
@@ -47,4 +47,9 @@ import Form from "./Form.astro";
       display: none;
     }
   }
-  </style>
+  @media screen and (max-width: 550px) {
+    .c-bg-left {
+      height: 80%;
+    }
+  }
+</style>
