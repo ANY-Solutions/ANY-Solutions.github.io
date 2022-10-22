@@ -29,13 +29,13 @@
   }
   .hero::after {
     position: absolute;
-    bottom: -10%;
+    bottom: -15%;
     left: -5%;
     transform: rotate(5deg);
     content: " ";
     display: block;
     width: 110vw;
-    height: 15rem;
+    height: 20rem;
     background-color: var(--color-dark);
   }
   .H-container {
@@ -74,8 +74,14 @@
       font-size: 1rem;
       line-height: 1.5rem;
     }
-    .btn{
+    .btn {
       font-size: 1rem;
+    }
+  }
+
+  @media screen and (min-width: 3900px) {
+    .hero::after {
+      display: none ;
     }
   }
 </style>
