@@ -1,9 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@100;300;400;500;700&display=swap");
+
 :root {
   --color-primary: #32baec;
   --color-secondary: #c132ec;
   --color-tertiary: #fd4d26;
+  --color-tertiary-dark: #a5341b;
   --color-dark: #090b31;
+  --width: 0%;
 }
 
 *,
@@ -18,7 +21,7 @@ html {
 }
 body {
   font-size: 16px;
-  font-family: "Ubuntu", sans-serif;
+  font-family: "Barlow", sans-serif;
   line-height: 1.5;
   background: var(--color-dark);
   color: rgb(255, 255, 255);
@@ -90,11 +93,11 @@ nav ul li:hover {
   transition: all 200ms ease-in-out;
 }
 .logo img {
-  width: 14rem;
+  width: 8rem;
 }
 
 @media screen and (max-width: 450px) {
   .logo img {
-    width: 10rem;
+    width: 6rem;
   }
 }

@@ -1,13 +1,32 @@
 <section class="hero">
+  <div class="loading-screen" id="loading-screen">
+    <div class="progress-section flex">
+      <object type="image/svg+xml" data="/animatedLogo.svg"></object>
+      <div id="progress-bar" class="progress-bar"></div>
+      <p id="progress-percentage">0%</p>
+    </div>
+    <div class="flex credit">
+      <h2>Thanks for the artists providing the 3d models.</h2>
+      <p>
+        "Discovery Space Shuttle" by rsatenza is licensed under Creative Commons
+        Attribution .
+      </p>
+      <p>
+        "Spaceman Model" by likesenape is licensed under Creative Commons
+        Attribution .
+      </p>
+    </div>
+  </div>
+  <div id="scene-container"></div>
   <slot />
   <div class="container flex H-container">
+    <img class="h-bg-left" src="/hero-left.svg" alt="" srcset="" />
     <div class="H-text">
       <div>
-        <h1>Some catchy phrase that`s kind of long!</h1>
+        <h1>ANY Solutions</h1>
         <p>
-          A lot of text that kind of describes something but not really, I was
-          too lazy to go copy some lorem ipsum. We are Any Solutions, taking
-          care of all your digital solutions.
+          your way to navigate the digital space Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit
         </p>
       </div>
       <a href="#contact">
@@ -18,51 +37,99 @@
 </section>
 
 <style>
+  .loading-screen {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--color-dark);
+    z-index: 5;
+  }
+  .progress-section {
+    flex-direction: column;
+    height: 80%;
+  }
+  .progress-section p {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    font-weight: light;
+  }
+  .credit {
+    transition: all 400ms ease-in-out;
+    flex-direction: column;
+    height: 20%;
+  }
+  .credit h2 {
+    font-size: 0.8rem;
+  }
+  .credit p {
+    font-size: 0.3rem;
+    font-weight: lighter;
+  }
+  .progress-bar {
+    width: 80vw;
+    max-width: 670px;
+    height: 5px;
+    border-radius: 10px;
+    margin-top: 2rem;
+    background-color: var(--color-primary);
+  }
+  .progress-bar::before {
+    max-width: 670px;
+    width: var(--width);
+    height: 5px;
+    border-radius: 10px;
+    content: " ";
+    display: block;
+    background-color: var(--color-tertiary);
+  }
+  .loading-screen object {
+    width: 17%;
+  }
   .hero {
     min-height: 1080px;
-    background-image: url("/Hero_bg.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
     position: relative;
     overflow: hidden;
   }
-  .hero::after {
+  #scene-container {
     position: absolute;
-    bottom: -15%;
-    left: -5%;
-    transform: rotate(5deg);
-    content: " ";
-    display: block;
-    width: 110vw;
-    height: 20rem;
-    background-color: var(--color-dark);
+    width: 100%;
+    height: 100%;
+    z-index: 1;
   }
+
   .H-container {
-    margin-top: 3rem;
+    margin-top: 5rem;
     flex-direction: column;
     align-items: flex-start;
+    position: relative;
     height: 60%;
   }
+  .h-bg-left {
+    position: absolute;
+    height: 150%;
+    z-index: -2;
+    left: -4%;
+    bottom: -40%;
+  }
   .H-text {
+    position: relative;
+    z-index: 1;
     width: 38%;
-    margin-left: 10%;
+    margin-left: 5%;
   }
   h1 {
-    font-size: 2.5rem;
+    font-size: 5rem;
+    max-width: 15rem;
+    line-height: 90%;
     margin-bottom: 1.5rem;
   }
   p {
     font-size: 1.5rem;
-    line-height: 3rem;
+    line-height: 150%;
   }
   @media screen and (max-width: 1100px) {
     .H-text {
       width: 80%;
-    }
-    .hero {
-      background-image: url("/Hero_bg_mobile.png");
-      background-position: center;
     }
   }
   @media screen and (max-width: 450px) {
@@ -78,10 +145,149 @@
       font-size: 1rem;
     }
   }
-
-  @media screen and (min-width: 3900px) {
-    .hero::after {
-      display: none ;
-    }
-  }
 </style>
+<script type="module">
+  import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.121.1/build/three.module.js";
+  import { GLTFLoader } from "https://cdn.skypack.dev/three@0.132.2/examples/jsm/loaders/GLTFLoader.js";
+
+  let floatingMeshY = [];
+  let rotatingMesh = [];
+  const manager = new THREE.LoadingManager();
+  const loader = new GLTFLoader(manager);
+  const progressScreen = document.getElementById("loading-screen");
+  const progressPercentage = document.getElementById("progress-percentage");
+  const progressBar = document.getElementById("progress-bar");
+  let percentage = 0;
+  manager.onProgress = function (url, itemsLoaded, itemsTotal) {
+    percentage = (itemsLoaded / itemsTotal) * 100;
+    progressPercentage.innerText = `${percentage}%`;
+    progressBar.style.setProperty("--width", `${percentage}%`);
+    progressBar.style.before = "red";
+    console.log();
+  };
+  manager.onLoad = function () {
+    progressScreen.style.display = "none";
+  };
+  const scene = new THREE.Scene();
+
+  const camera = new THREE.PerspectiveCamera(
+    75,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    1000
+  );
+  camera.position.set(0, 0, -30);
+  camera.lookAt(0, 0, 0);
+  let clock;
+  clock = new THREE.Clock();
+  //renderer
+  const sceneContainer = document.querySelector("#scene-container");
+  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  sceneContainer.appendChild(renderer.domElement);
+
+  //groups
+  const shuttleGroup = new THREE.Object3D();
+  shuttleGroup.position.set(-25, 5, 0);
+  shuttleGroup.up.set(0, 1, 0);
+
+  const spacemanGroup = new THREE.Object3D();
+  spacemanGroup.position.set(0, 10, 4);
+  spacemanGroup.up.set(0, 1, 0);
+  scene.add(shuttleGroup, spacemanGroup);
+
+  // Lights
+
+  const shuttlePointLight = new THREE.PointLight(0xffffff, 0.5);
+  shuttlePointLight.position.set(-2, 0, 2);
+
+  const shuttleSpotLight = new THREE.SpotLight(0x32baec, 2);
+  shuttleSpotLight.position.set(-1, -10, 1);
+  shuttleSpotLight.decay = 2;
+
+  const shuttleSpotLight2 = new THREE.SpotLight(0xfd4d26, 1.2);
+  shuttleSpotLight2.position.set(10, 10, 2);
+  shuttleSpotLight2.decay = 2;
+
+  const spacemanPointlight = new THREE.PointLight(0xc132ec, 1);
+  spacemanPointlight.position.set(-2, 10, 2);
+  const spacemanPointlight2 = new THREE.PointLight(0xfd4d26, 1);
+  spacemanPointlight2.position.set(2, -2, 7);
+
+  const light = new THREE.AmbientLight(0xffffff);
+
+  scene.add(light);
+
+  //plane
+  const planeGeometry = new THREE.PlaneBufferGeometry(85, 85, 1, 1);
+  const planeMaterial = new THREE.MeshBasicMaterial({ color: 0xfd4d26 });
+  const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+  plane.position.set(-30, 20, 30);
+  plane.rotation.y = Math.PI;
+  plane.rotation.z = Math.PI * 0.07;
+  scene.add(plane);
+
+  async function loadModels() {
+    const [shuttleData, spacemanData] = await Promise.all([
+      loader.loadAsync("/models/space_shuttle.glb"),
+      loader.loadAsync("/models/spaceman.glb"),
+    ]);
+
+    const shuttle = shuttleData.scene.children[0];
+    shuttle.rotation.z = -Math.PI / 2;
+    shuttle.rotation.y = -Math.PI * 0.055;
+    shuttle.rotation.x = -Math.PI / 1.7;
+    shuttle.scale.set(20, 20, 20);
+    shuttle.add(shuttlePointLight, shuttleSpotLight, shuttleSpotLight2);
+
+    const spaceman = spacemanData.scene.children[0];
+    spaceman.scale.set(1.5, 1.5, 1.5);
+    spaceman.position.set(0, 0, 0);
+    spaceman.rotation.z = -Math.PI / 1.5;
+    spaceman.add(spacemanPointlight, spacemanPointlight2);
+    floatingMeshY.push(shuttle, spaceman);
+    rotatingMesh.push(spaceman);
+
+    spacemanGroup.add(spaceman);
+    shuttleGroup.add(shuttle, plane);
+  }
+  /**
+   * Sizes
+   */
+  const sizes = {
+    width: window.innerWidth,
+    height: window.innerHeight,
+  };
+
+  window.addEventListener("resize", () => {
+    // Update sizes
+    sizes.width = window.innerWidth;
+    sizes.height = window.innerHeight;
+
+    // Update camera
+    camera.aspect = sizes.width / sizes.height;
+    camera.updateProjectionMatrix();
+
+    // Update renderer
+    renderer.setSize(sizes.width, sizes.height);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  });
+
+  function animate() {
+    requestAnimationFrame(animate);
+
+    const time = clock.getElapsedTime();
+    for (let i = 0; i < floatingMeshY.length; i++) {
+      floatingMeshY[i].position.y += Math.cos(time) * 0.01 * (i / 2 + 1);
+    }
+    for (let i = 0; i < rotatingMesh.length; i++) {
+      rotatingMesh[i].rotation.x += 0.003 * (i + 1);
+      rotatingMesh[i].rotation.y += Math.cos(time) * 0.0003 * (i + 1);
+      rotatingMesh[i].rotation.z += Math.cos(time) * 0.0008 * (i + 1);
+    }
+    renderer.render(scene, camera);
+  }
+
+  animate();
+  loadModels();
+</script>
