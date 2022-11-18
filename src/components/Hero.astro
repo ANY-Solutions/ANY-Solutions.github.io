@@ -167,6 +167,7 @@
   };
   manager.onLoad = function () {
     progressScreen.style.display = "none";
+    document.body.classList.remove("stop-scrolling");
   };
   const scene = new THREE.Scene();
 

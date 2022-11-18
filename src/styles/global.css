@@ -43,7 +43,9 @@ ul {
   padding-left: 40px;
   padding-right: 40px;
 }
-
+.stop-scrolling {
+  overflow: hidden;
+}
 .flex {
   display: flex;
   justify-content: center;
