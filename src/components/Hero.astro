@@ -119,6 +119,7 @@
   }
   p {
     font-size: 1.5rem;
+    font-weight: 500;
     line-height: 150%;
   }
   @media screen and (max-width: 1100px) {
@@ -188,6 +189,7 @@
     width: window.innerWidth,
     height: window.innerWidth > 1080 ? 1080 : window.innerWidth,
   };
+  const object = document.createElement("object");
   let floatingMeshY = [];
   let rotatingMesh = [];
   const manager = new THREE.LoadingManager();
@@ -206,15 +208,12 @@
   manager.onLoad = function () {
     progressScreen.style.display = "none";
     document.body.classList.remove("stop-scrolling");
-
-    const object = document.createElement("object");
     object.type = "image/svg+xml";
     object.data = "/hero-left-animated.svg";
     object.style.position = "absolute";
     object.style.zIdex = "-2";
     object.style.left = "-4%";
     object.style.bottom = "-5%";
-    console.log(window.innerWidth);
     if (window.innerWidth < 1100 && window.innerWidth > 600) {
       object.style.width = "70%";
     } else if (window.innerWidth < 600) {
@@ -326,7 +325,7 @@
   window.addEventListener("resize", () => {
     // Update sizes
     sizes.width = window.innerWidth;
-    sizes.height = window.innerWidth > 1080 ? 1080 : window.innerWidth ;
+    sizes.height = window.innerWidth > 1080 ? 1080 : window.innerWidth;
 
     // Update camera
     camera.aspect = sizes.width / sizes.height;
@@ -335,6 +334,15 @@
     // Update renderer
     renderer.setSize(sizes.width, sizes.height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    //hero bg width update
+    if (window.innerWidth < 1100 && window.innerWidth > 600) {
+      object.style.width = "70%";
+    } else if (window.innerWidth < 600) {
+      object.style.width = "90%";
+    } else {
+      object.style.width = "50%";
+    }
   });
 
   function animate() {
