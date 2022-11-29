@@ -17,7 +17,7 @@
       </p>
     </div>
   </div>
-  <div class="container" id="scene-container"></div>
+  <div id="scene-container"></div>
   <slot />
   <div id="H-container" class="container flex H-container">
     <div class="H-text">
@@ -85,7 +85,8 @@
     width: 17%;
   }
   .hero {
-    min-height: 90vh;
+    height: 90vh;
+    max-height: 1080px;
     position: relative;
     overflow: hidden;
   }
@@ -124,7 +125,6 @@
     .H-text {
       width: 80%;
     }
-
   }
   @media screen and (max-width: 600px) {
     .H-text {
@@ -183,6 +183,11 @@
     return check;
   };
   /*gloable variables*/
+  /* Sizes */
+  const sizes = {
+    width: window.innerWidth,
+    height: window.innerWidth > 1080 ? 1080 : window.innerWidth,
+  };
   let floatingMeshY = [];
   let rotatingMesh = [];
   const manager = new THREE.LoadingManager();
@@ -208,8 +213,8 @@
     object.style.position = "absolute";
     object.style.zIdex = "-2";
     object.style.left = "-4%";
-    object.style.bottom = "-40%";
-    console.log(window.innerWidth)
+    object.style.bottom = "-5%";
+    console.log(window.innerWidth);
     if (window.innerWidth < 1100 && window.innerWidth > 600) {
       object.style.width = "70%";
     } else if (window.innerWidth < 600) {
@@ -235,7 +240,7 @@
   //renderer
   const sceneContainer = document.querySelector("#scene-container");
   const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setSize(sizes.width, sizes.height);
   sceneContainer.appendChild(renderer.domElement);
 
   //groups
@@ -317,16 +322,11 @@
       initSpaceman(spacemanData, false);
     }
   }
-  /* Sizes */
-  const sizes = {
-    width: window.innerWidth,
-    height: window.innerHeight,
-  };
 
   window.addEventListener("resize", () => {
     // Update sizes
     sizes.width = window.innerWidth;
-    sizes.height = window.innerHeight;
+    sizes.height = window.innerWidth > 1080 ? 1080 : window.innerWidth ;
 
     // Update camera
     camera.aspect = sizes.width / sizes.height;
