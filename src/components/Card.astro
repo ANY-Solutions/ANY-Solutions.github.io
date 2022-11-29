@@ -14,11 +14,13 @@ const { icon, title, phrase, keyPoints, color } = Astro.props;
     </ul>
   </div>
   <div class="flex contact-btn">
-    <button>Contant Us</button>
+    <a href="#contact">
+      <button>Contant Us</button>
+    </a>
   </div>
 </div>
 
-<style define:vars={{ bg_color:color}}>
+<style define:vars={{ bg_color: color }}>
   h3 {
     font-size: 1.4rem;
   }
@@ -36,7 +38,7 @@ const { icon, title, phrase, keyPoints, color } = Astro.props;
     transform: scale(1.01);
   }
   .card-img {
-    width: 30%;
+    width: 32%;
     justify-content: flex-start;
   }
   .card-img h3 {
@@ -130,7 +132,7 @@ const { icon, title, phrase, keyPoints, color } = Astro.props;
       height: 35rem;
     }
     .contact-btn button {
-      padding:2rem;
+      padding: 2rem;
       width: 9rem;
       height: 9rem;
       font-size: 1.2rem;
@@ -140,4 +142,4 @@ const { icon, title, phrase, keyPoints, color } = Astro.props;
       font-size: 1.2rem;
     }
   }
-  </style>
+</style>

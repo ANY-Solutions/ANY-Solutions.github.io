@@ -17,16 +17,15 @@
       </p>
     </div>
   </div>
-  <div id="scene-container"></div>
+  <div class="container" id="scene-container"></div>
   <slot />
-  <div class="container flex H-container">
-    <img class="h-bg-left" src="/hero-left.svg" alt="" srcset="" />
+  <div id="H-container" class="container flex H-container">
     <div class="H-text">
       <div>
         <h1>ANY Solutions</h1>
         <p>
-          your way to navigate the digital space Lorem ipsum dolor sit amet,
-          consectetur adipiscing elit
+          Your way to navigate the digital space,Contact us now to start the
+          development of your next big product.
         </p>
       </div>
       <a href="#contact">
@@ -86,7 +85,7 @@
     width: 17%;
   }
   .hero {
-    min-height: 1080px;
+    min-height: 90vh;
     position: relative;
     overflow: hidden;
   }
@@ -104,13 +103,7 @@
     position: relative;
     height: 60%;
   }
-  .h-bg-left {
-    position: absolute;
-    width: 50%;
-    z-index: -2;
-    left: -4%;
-    bottom: -40%;
-  }
+
   .H-text {
     position: relative;
     z-index: 1;
@@ -131,9 +124,7 @@
     .H-text {
       width: 80%;
     }
-    .h-bg-left {
-      width: 70%;
-    }
+
   }
   @media screen and (max-width: 600px) {
     .H-text {
@@ -147,13 +138,11 @@
     .loading-screen object {
       width: 60%;
     }
-    .h-bg-left {
-      width: 90%;
-    }
+
     h1 {
-     text-align: center;
-     margin: auto;
-     max-width: 100%;
+      text-align: center;
+      margin: auto;
+      max-width: 100%;
     }
     p {
       text-align: center;
@@ -212,6 +201,23 @@
   manager.onLoad = function () {
     progressScreen.style.display = "none";
     document.body.classList.remove("stop-scrolling");
+
+    const object = document.createElement("object");
+    object.type = "image/svg+xml";
+    object.data = "/hero-left-animated.svg";
+    object.style.position = "absolute";
+    object.style.zIdex = "-2";
+    object.style.left = "-4%";
+    object.style.bottom = "-40%";
+    console.log(window.innerWidth)
+    if (window.innerWidth < 1100 && window.innerWidth > 600) {
+      object.style.width = "70%";
+    } else if (window.innerWidth < 600) {
+      object.style.width = "90%";
+    } else {
+      object.style.width = "50%";
+    }
+    document.getElementById("H-container").appendChild(object);
   };
   /*scene and camera */
   const scene = new THREE.Scene();
@@ -234,7 +240,7 @@
 
   //groups
   const shuttleGroup = new THREE.Object3D();
-  shuttleGroup.position.set(-25, 5, 0);
+  shuttleGroup.position.set(-80, 5, 0);
   shuttleGroup.up.set(0, 1, 0);
 
   const spacemanGroup = new THREE.Object3D();
@@ -272,7 +278,9 @@
   plane.rotation.y = Math.PI;
   plane.rotation.z = Math.PI * 0.07;
 
-  function initSpaceman(spacemanData,mobile) {
+  //3d models
+
+  function initSpaceman(spacemanData, mobile) {
     const spaceman = spacemanData.scene.children[0];
     spaceman.scale.set(1.5, 1.5, 1.5);
     spaceman.position.set(0, 0, 0);
@@ -284,7 +292,6 @@
     if (mobile) {
       shuttleGroup.add(shuttlePointLight, shuttleSpotLight, shuttleSpotLight2);
     }
-
   }
   function initShuttle(shuttleData) {
     const shuttle = shuttleData.scene.children[0];
@@ -300,17 +307,15 @@
   async function loadModels() {
     if (window.mobileCheck()) {
       const spacemanData = await loader.loadAsync("/models/spaceman.glb");
-      initSpaceman(spacemanData,true); 
-    }else{
+      initSpaceman(spacemanData, true);
+    } else {
       const [shuttleData, spacemanData] = await Promise.all([
         loader.loadAsync("/models/space_shuttle.glb"),
         loader.loadAsync("/models/spaceman.glb"),
       ]);
       initShuttle(shuttleData);
-      initSpaceman(spacemanData,false) ;
+      initSpaceman(spacemanData, false);
     }
-    
-
   }
   /* Sizes */
   const sizes = {
@@ -334,8 +339,10 @@
 
   function animate() {
     requestAnimationFrame(animate);
-
     const time = clock.getElapsedTime();
+    if (shuttleGroup.position.x <= -25) {
+      shuttleGroup.position.x += 0.2 + Math.log10(time * 5 + 1);
+    }
     for (let i = 0; i < floatingMeshY.length; i++) {
       floatingMeshY[i].position.y += Math.cos(time) * 0.01 * (i / 2 + 1);
     }
