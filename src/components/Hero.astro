@@ -239,7 +239,13 @@
   //renderer
   const sceneContainer = document.querySelector("#scene-container");
   const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+  // set renderer
   renderer.setSize(sizes.width, sizes.height);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  // set camera
+  camera.aspect = sizes.width / sizes.height;
+  camera.updateProjectionMatrix();
+
   sceneContainer.appendChild(renderer.domElement);
 
   //groups
@@ -310,12 +316,12 @@
 
   async function loadModels() {
     if (window.mobileCheck()) {
-      const spacemanData = await loader.loadAsync("/models/spaceman.glb");
+      const spacemanData = await loader.loadAsync("/models/spaceman-com.glb");
       initSpaceman(spacemanData, true);
     } else {
       const [shuttleData, spacemanData] = await Promise.all([
         loader.loadAsync("/models/space_shuttle.glb"),
-        loader.loadAsync("/models/spaceman.glb"),
+        loader.loadAsync("/models/spaceman-com.glb"),
       ]);
       initShuttle(shuttleData);
       initSpaceman(spacemanData, false);
