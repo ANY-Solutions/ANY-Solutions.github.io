@@ -8,10 +8,7 @@ const { icon, title, phrase, keyPoints, color } = Astro.props;
     <h3>{title}</h3>
   </div>
   <div class="flex card-info">
-    <h3>{phrase}</h3>
-    <ul>
-      {keyPoints.map((point) => <li>{point}</li>)}
-    </ul>
+    <h3>{phrase} <span>{keyPoints}</span></h3>
   </div>
   <div class="flex contact-btn">
     <a href="#contact">
@@ -22,7 +19,11 @@ const { icon, title, phrase, keyPoints, color } = Astro.props;
 
 <style define:vars={{ bg_color: color }}>
   h3 {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
+  }
+  span{
+    font-size: 1.3rem;
+    font-weight:400;
   }
   .card {
     transition: all 700ms ease-in-out;
@@ -49,7 +50,7 @@ const { icon, title, phrase, keyPoints, color } = Astro.props;
     margin-right: 5%;
   }
   .card-info {
-    width: 40%;
+    width: 35%;
     flex-direction: column;
     align-items: flex-start;
   }

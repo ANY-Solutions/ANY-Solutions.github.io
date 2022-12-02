@@ -2,34 +2,22 @@
     {
        "icon":"Systems_Databases.svg" ,
        "title":"Systems & Databases",
-       "phrase":"Some Catchy phrase in bold.",
-       "key-points":[
-           "some key points!",
-           "some key points!",
-           "some key points!"
-        ],
+       "phrase":"Build your business' system form the ground up.",
+       "key-points":"We offer custom build systems that is suited for your needs, and build from the start with you in mind.",
         "color":"#32baec"
     },
     {
        "icon":"Web_Development.svg" ,
        "title":"Web Development",
-       "phrase":"Some Catchy phrase in bold.",
-       "key-points":[
-           "some key points!",
-           "some key points!",
-           "some key points!"
-       ],
+       "phrase":"Establish, Design & Build your WebApp.",
+       "key-points":"From the help of our creative team, the process of building your next projects was never this easy.",
         "color":"#c132ec"
     },
     {
        "icon":"IT_Infrastructure.svg" ,
        "title":"IT Infrastructure",
-       "phrase":"Some Catchy phrase in bold.",
-       "key-points":[
-           "some key points!",
-           "some key points!",
-           "some key points!"
-       ],
+       "phrase":"Discover your business' true potential.",
+       "key-points":"preparing your business with state of the art technologies to aid you through your journey is our job.",
         "color":"#fd4d26"
     }
 ]
