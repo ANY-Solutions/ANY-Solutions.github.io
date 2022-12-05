@@ -104,3 +104,9 @@ nav ul li:hover {
     width: 6rem;
   }
 }
+
+@media screen and (max-width: 800px) {
+  .container {
+    padding: 0 15px;
+  }
+}
