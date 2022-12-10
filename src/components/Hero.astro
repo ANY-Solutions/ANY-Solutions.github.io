@@ -187,7 +187,7 @@
   /* Sizes */
   const sizes = {
     width: window.innerWidth,
-    height: window.innerWidth > 1080 ? 1080 : window.innerWidth,
+    height: window.innerHeight > 1080 ? 1080 : window.innerHeight,
   };
   const object = document.createElement("object");
   let floatingMeshY = [];
@@ -331,7 +331,7 @@
   window.addEventListener("resize", () => {
     // Update sizes
     sizes.width = window.innerWidth;
-    sizes.height = window.innerWidth > 1080 ? 1080 : window.innerWidth;
+    sizes.height = window.innerHeight > 1080 ? 1080 : window.innerHeight;
 
     // Update camera
     camera.aspect = sizes.width / sizes.height;
