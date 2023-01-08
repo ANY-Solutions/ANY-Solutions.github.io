@@ -8,21 +8,21 @@ import Message from "./Message.astro";
   <div class="flex contact-info">
     <div class="flex">
       <img src="/Phone_Num.svg" alt="Phone icon" srcset="" />
-      <h4>Phone Number</h4>
+      <h4>Your phone number</h4>
     </div>
     <div class="flex">
       <img src="/email.svg" alt="Email icon" srcset="" />
-      <h4>Email@emial.com</h4>
+      <h4>Your e-mail address</h4>
     </div>
   </div>
-  <p>the fields with <span>*</span> has to be filled.</p>
+  <p>Fields marked with '<span>*</span>' are mandatory.</p>
   <label for="name">Name<span>*</span>:</label>
   <input class="field" required type="text" id="name" name="name" />
-  <label for="email">Email<span>*</span>:</label>
+  <label for="email">E-mail<span>*</span>:</label>
   <input class="field" required type="email" id="email" name="email" />
-  <label for="phoneNum">Phone Number:</label>
+  <label for="phoneNum">Phone number:</label>
   <input class="field" type="text" id="phoneNum" name="phoneNum" />
-  <label for="description">Description<span>*</span>:</label>
+  <label for="description">Message<span>*</span>:</label>
   <textarea class="field" required name="description" id="description" rows="10"
   ></textarea>
   <button

@@ -3,21 +3,21 @@
        "icon":"Systems_Databases.svg" ,
        "title":"Systems & Databases",
        "phrase":"Build your business' system form the ground up.",
-       "key-points":"We offer custom build systems that is suited for your needs, and build from the start with you in mind.",
+       "key-points":"We offer custom-built systems that are suited for your needs, and built from scratch with you in mind.",
         "color":"#32baec"
     },
     {
        "icon":"Web_Development.svg" ,
        "title":"Web Development",
        "phrase":"Establish, Design & Build your WebApp.",
-       "key-points":"From the help of our creative team, the process of building your next projects was never this easy.",
+       "key-points":"With the help of our creative teams, the process of building your next project has never been this easy.",
         "color":"#c132ec"
     },
     {
        "icon":"IT_Infrastructure.svg" ,
        "title":"IT Infrastructure",
        "phrase":"Discover your business' true potential.",
-       "key-points":"preparing your business with state of the art technologies to aid you through your journey is our job.",
+       "key-points":"Arming your business with state of the art technologies to aid you through your journey is our job.",
         "color":"#fd4d26"
     }
 ]
